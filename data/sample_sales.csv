@@ -16,3 +16,6 @@ FL,99000,500,direct,streaming
 WA,100000,12,direct,saas
 AL,249000,80,direct,downloaded_software
 AL,251000,10,direct,downloaded_software
+KY,95000,400,direct,downloaded_software
+KY,120000,50,direct,downloaded_software
+GA,80000,90,direct,ebooks
