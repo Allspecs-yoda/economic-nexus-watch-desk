@@ -16,7 +16,7 @@ Illinois,IL,yes,100000,gte,,,none,preceding 12-month lookback evaluated quarterl
 Indiana,IN,yes,100000,gte,,,none,current or immediately preceding calendar year,excluded,,Indiana Department of Revenue — Remote Sellers,STA-2026-08-18,
 Iowa,IA,yes,100000,gte,,,none,current or immediately preceding calendar year,included,,Iowa Department of Revenue,STA-2026-08-18,
 Kansas,KS,yes,100000,gte,,,none,current or immediately preceding calendar year,included,,Kansas Department of Revenue — Publication KS-1510,STA-2026-08-18,
-Kentucky,KY,yes,100000,gte,,,none,previous or current calendar year,included,txn_test_removed_2026,Kentucky General Assembly — HB 757 (2026),STA-2026-08-18,Sales-only after 2026 bill
+Kentucky,KY,yes,100000,gte,,,none,previous or current calendar year,included,dropped_200_txn_2026-08-01,Kentucky General Assembly — HB 757 / 26RS Acts Ch. 161,KY-HB-757,200-txn gone 2026-08-01; $100k TPP+digital+services; use --as-of 2026-07-31 for pre-HB757 either-test
 Louisiana,LA,yes,100000,gt,,,none,previous or current calendar year,included,,Louisiana R.S. 47:301,STA-2026-08-18,More than $100000
 Maine,ME,yes,100000,gte,,,none,previous or current calendar year,excluded,,Maine Revenue Services — Sales/Use Tax FAQ,STA-2026-08-18,
 Maryland,MD,yes,100000,gte,200,gte,either,previous or current calendar year,included,,Comptroller of Maryland,STA-2026-08-18,
