@@ -1,0 +1,52 @@
+state,abbr,has_sales_tax,sales_threshold_usd,sales_op,txn_threshold,txn_op,txn_test,measurement_period,marketplace_sales,watch_2026,authority,source_id,notes
+Alabama,AL,yes,250000,gt,,,none,previous calendar year,excluded,,Alabama Department of Revenue — Remote Seller FAQ,STA-2026-08-18,More than $250000
+Alaska,AK,no_state,100000,gte,,,none,current or previous calendar year,included,,Alaska Remote Seller Sales Tax Commission,STA-2026-08-18,No statewide sales tax; local / ARSSTC remote-seller rules
+Arizona,AZ,yes,100000,gte,,,none,current or previous calendar year,excluded,,Arizona Department of Revenue — Economic Nexus Threshold,STA-2026-08-18,Transaction privilege tax not conventional sales tax
+Arkansas,AR,yes,100000,gte,200,gte,either,previous or current calendar year,excluded,,Arkansas Department of Finance and Administration — Remote Sellers,STA-2026-08-18,Either sales or 200 txns
+California,CA,yes,500000,gt,,,none,preceding or current calendar year,included,,CDTFA Wayfair / RTC 6203 (AB 147),CDTFA-WAYFAIR,TPP delivered in CA by retailer + related persons; district use tax same $500k
+Colorado,CO,yes,100000,gte,,,none,previous or current calendar year,excluded,,Colorado Department of Revenue — Out-of-State Businesses,STA-2026-08-18,Home-rule cities may be separate
+Connecticut,CT,yes,100000,gte,200,gte,both,12-month period ending September 30,included,,Connecticut Department of Revenue Services,STA-2026-08-18,BOTH $100k AND 200 retail sales
+Delaware,DE,no,0,,0,,n/a,n/a,n/a,,Delaware Division of Revenue,STA-2026-08-18,No general sales tax
+District of Columbia,DC,yes,100000,gte,200,gte,either,previous or current calendar year,included,,DC Office of Tax and Revenue — Marketplace Sellers FAQ,STA-2026-08-18,
+Florida,FL,yes,100000,gte,,,none,previous calendar year,excluded,,Florida Department of Revenue — Sales and Use Tax,STA-2026-08-18,Prior-year only
+Georgia,GA,yes,100000,gte,200,gte,either,previous or current calendar year,excluded,,Georgia Department of Revenue — Out-of-State Sellers,STA-2026-08-18,
+Hawaii,HI,yes,100000,gte,200,gte,either,current or immediately preceding calendar year,included,,Hawaii Department of Taxation — GET,STA-2026-08-18,General excise tax
+Idaho,ID,yes,100000,gte,,,none,current or previous calendar year,included,,Idaho State Tax Commission — Online Sellers Guide,STA-2026-08-18,
+Illinois,IL,yes,100000,gte,,,none,preceding 12-month lookback evaluated quarterly,excluded,dropped_200_txn_2026-01-01,IDOR FY 2026-12 / ST 26-0019-GIL,IL-FY-2026-12,200-txn test gone 2026-01-01; 15% undetermined-location rate
+Indiana,IN,yes,100000,gte,,,none,current or immediately preceding calendar year,excluded,,Indiana Department of Revenue — Remote Sellers,STA-2026-08-18,
+Iowa,IA,yes,100000,gte,,,none,current or immediately preceding calendar year,included,,Iowa Department of Revenue,STA-2026-08-18,
+Kansas,KS,yes,100000,gte,,,none,current or immediately preceding calendar year,included,,Kansas Department of Revenue — Publication KS-1510,STA-2026-08-18,
+Kentucky,KY,yes,100000,gte,,,none,previous or current calendar year,included,txn_test_removed_2026,Kentucky General Assembly — HB 757 (2026),STA-2026-08-18,Sales-only after 2026 bill
+Louisiana,LA,yes,100000,gt,,,none,previous or current calendar year,included,,Louisiana R.S. 47:301,STA-2026-08-18,More than $100000
+Maine,ME,yes,100000,gte,,,none,previous or current calendar year,excluded,,Maine Revenue Services — Sales/Use Tax FAQ,STA-2026-08-18,
+Maryland,MD,yes,100000,gte,200,gte,either,previous or current calendar year,included,,Comptroller of Maryland,STA-2026-08-18,
+Massachusetts,MA,yes,100000,gte,,,none,previous or current calendar year,excluded,,Massachusetts DOR — Remote Seller FAQ,STA-2026-08-18,
+Michigan,MI,yes,100000,gte,200,gte,either,previous calendar year,included,,Michigan Department of Treasury — Remote Seller FAQ,STA-2026-08-18,Prior-year only
+Minnesota,MN,yes,100000,gte,200,gte,either,12-month period ending last day of most recently completed calendar quarter,included,,Minnesota Department of Revenue,STA-2026-08-18,Rolling quarter-end
+Mississippi,MS,yes,250000,gt,,,none,prior 12 months,excluded,,Mississippi Department of Revenue,STA-2026-08-18,More than $250000 rolling
+Missouri,MO,yes,100000,gte,,,none,preceding 12-month period reviewed each calendar quarter,included,,Missouri Department of Revenue,STA-2026-08-18,Quarterly review
+Montana,MT,no,0,,0,,n/a,n/a,n/a,,Montana Department of Revenue,STA-2026-08-18,No general sales tax
+Nebraska,NE,yes,100000,gte,200,gte,either,previous or current calendar year,included,,Nebraska Department of Revenue,STA-2026-08-18,
+Nevada,NV,yes,100000,gte,200,gte,either,previous or current calendar year,included,,Nevada Department of Taxation,STA-2026-08-18,
+New Hampshire,NH,no,0,,0,,n/a,n/a,n/a,,New Hampshire DRA,STA-2026-08-18,No general sales tax
+New Jersey,NJ,yes,100000,gt,200,gte,either,current or prior calendar year,included,,New Jersey Division of Taxation,STA-2026-08-18,More than $100000 or 200 txns
+New Mexico,NM,yes,100000,gte,,,none,previous calendar year,excluded,,New Mexico TRD,STA-2026-08-18,Prior-year only
+New York,NY,yes,500000,gt,100,gt,both,immediately preceding four sales tax quarters,included,,NYS Tax — nexus.htm / TSB-M-19(4)S,NYS-NEXUS,BOTH >$500k AND >100 TPP sales; quarters Mar/Jun/Sep/Dec
+North Carolina,NC,yes,100000,gte,,,none,previous or current calendar year,included,dropped_200_txn_2024-07-01,North Carolina DOR,STA-2026-08-18,Txn test eliminated 2024-07-01
+North Dakota,ND,yes,100000,gte,,,none,current or previous calendar year,excluded,,North Dakota Office of State Tax Commissioner,STA-2026-08-18,
+Ohio,OH,yes,100000,gte,200,gte,either,previous or current calendar year,included,,Ohio Department of Taxation,STA-2026-08-18,
+Oklahoma,OK,yes,100000,gte,,,none,preceding or current calendar year,excluded,,Oklahoma Tax Commission,STA-2026-08-18,
+Oregon,OR,no,0,,0,,n/a,n/a,n/a,,Oregon Department of Revenue,STA-2026-08-18,No general sales tax
+Pennsylvania,PA,yes,100000,gt,,,none,prior calendar year,see_note,,Pennsylvania Department of Revenue,STA-2026-08-18,More than $100000 prior year
+Rhode Island,RI,yes,100000,gte,200,gte,either,immediately preceding calendar year,included,,Rhode Island Division of Taxation,STA-2026-08-18,Prior-year only
+South Carolina,SC,yes,100000,gte,,,none,previous or current calendar year,included,,South Carolina DOR,STA-2026-08-18,
+South Dakota,SD,yes,100000,gte,,,none,previous or current calendar year,included,,South Dakota DOR,STA-2026-08-18,Wayfair origin state
+Tennessee,TN,yes,100000,gte,,,none,previous 12-month period,excluded,,Tennessee Department of Revenue,STA-2026-08-18,Rolling 12 months
+Texas,TX,yes,500000,gt,,,none,preceding 12 calendar months,included,,Texas Comptroller — Remote Sellers,STA-2026-08-18,Safe harbor under $500k rolling
+Utah,UT,yes,100000,gte,,,none,current or preceding calendar year,excluded,,Utah State Tax Commission,STA-2026-08-18,
+Vermont,VT,yes,100000,gte,200,gte,either,prior four calendar quarters,included,,Vermont Department of Taxes,STA-2026-08-18,
+Virginia,VA,yes,100000,gte,200,gte,either,previous or current calendar year,excluded,,Virginia Tax,STA-2026-08-18,
+Washington,WA,yes,100000,gte,,,none,current or preceding calendar year,included,,Washington DOR,STA-2026-08-18,Separate B&O tax also applies
+West Virginia,WV,yes,100000,gte,200,gte,either,preceding or current calendar year,included,,West Virginia State Tax Department,STA-2026-08-18,
+Wisconsin,WI,yes,100000,gte,,,none,previous or current calendar year,included,,Wisconsin DOR,STA-2026-08-18,
+Wyoming,WY,yes,100000,gte,,,none,current or immediately preceding calendar year,excluded,,Wyoming HB0197 (2024),STA-2026-08-18,
