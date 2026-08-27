@@ -10,6 +10,9 @@ No network. No API keys. Planning only — not tax advice.
   python3 desk/quote.py --watch
   python3 desk/quote.py --cheap 15
   python3 desk/quote.py --digital CA --product downloaded_software
+  python3 desk/quote.py --sst
+  python3 desk/quote.py --split KY --direct 80000 --marketplace 40000 --txns 400
+  python3 desk/quote.py --check KY --sales 95000 --txns 400 --as-of 2026-07-31
 """
 
 from __future__ import annotations
@@ -17,14 +20,17 @@ from __future__ import annotations
 import argparse
 import csv
 import sys
+from datetime import date, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 THRESH = DATA / "nexus_thresholds.csv"
 DIGITAL = DATA / "digital_goods_flags.csv"
+SST = DATA / "sst_membership.csv"
 
 NO_TAX = {"no", "n/a", "none", ""}
+KY_HB757_ON = date(2026, 8, 1)
 
 
 def load_csv(path: Path) -> list[dict]:
@@ -42,6 +48,42 @@ def by_abbr() -> dict[str, dict]:
 
 def digital_by_abbr() -> dict[str, dict]:
     return {r["abbr"].upper(): r for r in load_csv(DIGITAL)}
+
+
+def sst_by_abbr() -> dict[str, dict]:
+    return {r["abbr"].upper(): r for r in load_csv(SST)}
+
+
+def parse_as_of(s: str | None) -> date:
+    if not s:
+        return datetime.now().date()
+    return datetime.strptime(s, "%Y-%m-%d").date()
+
+
+def overlay_as_of(row: dict, as_of: date) -> dict:
+    """KY HB 757 (Acts Ch. 161): 200-txn test dies 2026-08-01."""
+    if row.get("abbr") != "KY":
+        return row
+    r = dict(row)
+    if as_of < KY_HB757_ON:
+        r["txn_test"] = "either"
+        r["txn_threshold"] = "200"
+        r["txn_op"] = "gte"
+        r["watch_2026"] = "pre_HB757_either_test"
+        r["notes"] = (
+            "Before 2026-08-01: $100k OR 200 txns. HB 757 (26RS, Acts Ch. 161) "
+            "not yet effective."
+        )
+        r["source_id"] = "KY-HB-757"
+        r["authority"] = "KRS 139.340 as in force before HB 757"
+    else:
+        r["watch_2026"] = "dropped_200_txn_2026-08-01"
+        r["notes"] = (
+            "HB 757 / Acts Ch. 161: 200-txn gone 2026-08-01; $100k TPP + digital "
+            "+ services; register by first of month ≤60 days after crossing"
+        )
+        r["source_id"] = "KY-HB-757"
+    return r
 
 
 def money(n: float) -> str:
@@ -79,7 +121,7 @@ def evaluate(row: dict, sales: float, txns: int) -> dict:
         }
     if has == "no_state":
         sales_th = parse_int(row["sales_threshold_usd"])
-        hit = sales_hit(sales, sales_th, row["sales_op"] or "gte")
+        hit = cmp_hit(sales, sales_th, row["sales_op"] or "gte")
         return {
             "status": "watch_local" if hit else "under_remote_seller",
             "reason": (
@@ -174,46 +216,57 @@ def print_row(row: dict) -> None:
         print(f"  notes: {row['notes']}")
 
 
-def cmd_list(abbr: str | None) -> int:
+def cmd_list(abbr: str | None, as_of: date) -> int:
     table = by_abbr()
+    sst = sst_by_abbr()
     if abbr:
         key = abbr.upper()
         if key not in table:
             print(f"unknown state {abbr}", file=sys.stderr)
             return 1
-        print_row(table[key])
+        print_row(overlay_as_of(table[key], as_of))
+        if key in sst:
+            print(f"  sst: {sst[key]['status']} — {sst[key]['note']}")
         return 0
     print(
-        f"{'ST':<4} {'threshold':<28} {'txn':<8} {'mkt':<10} {'watch'}"
+        f"{'ST':<4} {'threshold':<32} {'txn':<8} {'mkt':<10} {'sst':<10} {'watch'}"
     )
     for r in rows():
+        r = overlay_as_of(r, as_of)
         watch = r.get("watch_2026") or ""
+        sm = sst.get(r["abbr"], {}).get("status", "out")
         print(
-            f"{r['abbr']:<4} {fmt_threshold(r):<28} {r['txn_test']:<8} "
-            f"{r['marketplace_sales']:<10} {watch}"
+            f"{r['abbr']:<4} {fmt_threshold(r):<32} {r['txn_test']:<8} "
+            f"{r['marketplace_sales']:<10} {sm:<10} {watch}"
         )
-    print(f"\n{len(rows())} jurisdictions. Not tax advice.")
+    print(f"\n{len(rows())} jurisdictions as of {as_of.isoformat()}. Not tax advice.")
     return 0
 
 
-def cmd_check(abbr: str, sales: float, txns: int, product: str | None) -> int:
+def cmd_check(
+    abbr: str, sales: float, txns: int, product: str | None, as_of: date
+) -> int:
     table = by_abbr()
     key = abbr.upper()
     if key not in table:
         print(f"unknown state {abbr}", file=sys.stderr)
         return 1
-    row = table[key]
+    row = overlay_as_of(table[key], as_of)
     ev = evaluate(row, sales, txns)
     print_row(row)
+    print(f"  as of: {as_of.isoformat()}")
     print(f"  your sales: {money(sales)} / {txns} txns")
     print(f"  result: {ev['status']}")
     print(f"  why: {ev['reason']}")
+    sst = sst_by_abbr()
+    if key in sst:
+        print(f"  sst: {sst[key]['status']} — {sst[key]['note']}")
     if product:
         cmd_digital(key, product, quiet=False)
     return 0
 
 
-def cmd_batch(path: Path) -> int:
+def cmd_batch(path: Path, as_of: date) -> int:
     table = by_abbr()
     digital = digital_by_abbr()
     recs = load_csv(path)
@@ -228,7 +281,7 @@ def cmd_batch(path: Path) -> int:
             continue
         sales = float(rec["sales_usd"])
         txns = int(float(rec["txns"]))
-        ev = evaluate(table[key], sales, txns)
+        ev = evaluate(overlay_as_of(table[key], as_of), sales, txns)
         if ev["status"] in ("triggered", "watch_local"):
             triggered += 1
         prod = rec.get("product") or ""
@@ -239,18 +292,27 @@ def cmd_batch(path: Path) -> int:
             f"{key:<4} {money(sales):>10} {txns:>5} {rec.get('channel',''):<12} "
             f"{prod:<20} {ev['status']:<18} {dflag}"
         )
-    print(f"\n{triggered}/{len(recs)} rows triggered or local-watch. Not tax advice.")
+    print(
+        f"\n{triggered}/{len(recs)} rows triggered or local-watch as of {as_of.isoformat()}. "
+        "Not tax advice."
+    )
     return 0
 
 
-def cmd_watch() -> int:
-    print("2026 watches (not the whole table):")
+def cmd_watch(as_of: date) -> int:
+    print(f"2026 watches as of {as_of.isoformat()} (not the whole table):")
     for r in rows():
+        r = overlay_as_of(r, as_of)
         if r.get("watch_2026"):
             print(f"- {r['abbr']}: {r['watch_2026']} — {r['notes']}")
     print(
         "\nIL: 200-txn test gone 2026-01-01 (IDOR FY 2026-12). "
         "A 400-order / $95k Illinois seller who would have triggered in 2025 does not on sales-only."
+    )
+    print(
+        "KY: HB 757 / Acts Ch. 161 — 200-txn dies 2026-08-01. "
+        "A 400-order / $95k Kentucky seller triggered on 2026-07-31 and is under on 2026-08-01. "
+        "Register by first of month ≤60 days after crossing $100k (Thompson / KRS 139.340)."
     )
     print(
         "NY: still BOTH >$500k AND >100 TPP sales in prior four quarters "
@@ -263,16 +325,18 @@ def cmd_watch() -> int:
     return 0
 
 
-def cmd_cheap(price: float) -> int:
+def cmd_cheap(price: float, as_of: date) -> int:
     """Show states where N cheap orders can trip a transaction test."""
     n = 200
     revenue = n * price
     print(
-        f"If every order is {money(price)}, {n} orders = {money(revenue)}."
+        f"If every order is {money(price)}, {n} orders = {money(revenue)}. "
+        f"As of {as_of.isoformat()}."
     )
     print("Either-test states where the txn prong can fire below the dollar line.\n")
     print(f"{'ST':<4} {'test':<32} {'$ at txn line':>14} {'note'}")
     for r in rows():
+        r = overlay_as_of(r, as_of)
         test = r["txn_test"]
         if test != "either":
             continue
@@ -285,6 +349,71 @@ def cmd_cheap(price: float) -> int:
         "\nBOTH-test states (NY, CT) need the dollar prong too — txn volume alone does not trigger."
     )
     print("IL is absent: the 200-txn test died 2026-01-01.")
+    if as_of >= KY_HB757_ON:
+        print("KY is absent: the 200-txn test died 2026-08-01 (HB 757).")
+    else:
+        print("KY still either-test until 2026-08-01.")
+    return 0
+
+
+def cmd_sst() -> int:
+    recs = load_csv(SST)
+    print("SSTGB membership as of 2026-08-14 public notice (23 full + TN associate).\n")
+    print(f"{'ST':<4} {'status':<12} {'sstrs':<8} note")
+    full = assoc = out = 0
+    for r in recs:
+        print(f"{r['abbr']:<4} {r['status']:<12} {r['sstrs']:<8} {r['note']}")
+        if r["status"] == "full":
+            full += 1
+        elif r["status"] == "associate":
+            assoc += 1
+        else:
+            out += 1
+    print(
+        f"\n{full} full / {assoc} associate / {out} out. "
+        "SSTRS is one registration into selected member states — it does not create nexus. "
+        "CA/TX/NY/FL/IL are out. Not tax advice."
+    )
+    return 0
+
+
+def cmd_split(
+    abbr: str, direct: float, marketplace: float, txns: int, as_of: date
+) -> int:
+    table = by_abbr()
+    key = abbr.upper()
+    if key not in table:
+        print(f"unknown state {abbr}", file=sys.stderr)
+        return 1
+    row = overlay_as_of(table[key], as_of)
+    mkt = (row.get("marketplace_sales") or "").strip()
+    combined = direct + marketplace
+    print_row(row)
+    print(f"  as of: {as_of.isoformat()}")
+    print(f"  direct: {money(direct)}  marketplace: {money(marketplace)}")
+    if mkt == "excluded":
+        counted = direct
+        note = (
+            "Marketplace volume is EXCLUDED from the seller threshold in this row. "
+            "Platform may still collect on those orders; seller watches the direct channel."
+        )
+    elif mkt == "included":
+        counted = combined
+        note = (
+            "Marketplace volume is INCLUDED toward the seller threshold. "
+            "Amazon/Etsy receipts can trip nexus even if the platform remits."
+        )
+    else:
+        counted = combined
+        note = (
+            f"marketplace_sales={mkt!r} — confirm with the named authority; "
+            "desk treats unknown as included for a conservative watch."
+        )
+    ev = evaluate(row, counted, txns)
+    print(f"  counted toward threshold: {money(counted)}")
+    print(f"  result: {ev['status']}")
+    print(f"  why: {ev['reason']}")
+    print(f"  split: {note}")
     return 0
 
 
@@ -319,20 +448,35 @@ def main() -> int:
     p.add_argument("--cheap", type=float, metavar="PRICE", help="txn-trap at this unit price")
     p.add_argument("--digital", metavar="ST")
     p.add_argument("--product", default="", help="saas|downloaded_software|ebooks|streaming")
+    p.add_argument("--sst", action="store_true", help="print SSTGB 23+TN membership")
+    p.add_argument("--split", metavar="ST", help="direct vs marketplace split")
+    p.add_argument("--direct", type=float, default=0.0)
+    p.add_argument("--marketplace", type=float, default=0.0)
+    p.add_argument(
+        "--as-of",
+        dest="as_of",
+        default="",
+        help="YYYY-MM-DD; KY HB 757 overlay uses 2026-08-01",
+    )
     args = p.parse_args()
+    as_of = parse_as_of(args.as_of or None)
 
     if args.watch:
-        return cmd_watch()
+        return cmd_watch(as_of)
     if args.cheap is not None:
-        return cmd_cheap(args.cheap)
+        return cmd_cheap(args.cheap, as_of)
+    if args.sst:
+        return cmd_sst()
+    if args.split:
+        return cmd_split(args.split, args.direct, args.marketplace, args.txns, as_of)
     if args.batch:
-        return cmd_batch(Path(args.batch))
+        return cmd_batch(Path(args.batch), as_of)
     if args.check:
-        return cmd_check(args.check, args.sales, args.txns, args.product or None)
+        return cmd_check(args.check, args.sales, args.txns, args.product or None, as_of)
     if args.digital:
         return cmd_digital(args.digital, args.product or "saas")
     if args.list:
-        return cmd_list(None if args.list == "ALL" else args.list)
+        return cmd_list(None if args.list == "ALL" else args.list, as_of)
     p.print_help()
     return 0
 
