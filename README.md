@@ -31,7 +31,7 @@ No API keys. Files work after Gamut credits are gone. Not tax advice. Confirm wi
 
 ## Price
 
-$49 USD. Unlimited non-exclusive buyers; copies may be resold. Pay [PAYMENT_LINK] then open a GitHub issue titled `CLAIM: Economic Nexus Watch Desk` with the receipt last-4. If checkout is down, star + watch and open the same CLAIM issue.
+$49 USD. Unlimited non-exclusive buyers; copies may be resold. Pay https://buy.stripe.com/aFa9AUf0c1AD4tscMlcIE05 then open a GitHub issue titled `CLAIM: Economic Nexus Watch Desk` with the receipt last-4. If checkout is down, star + watch and open the same CLAIM issue.
 
 ## License
 
