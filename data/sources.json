@@ -1,0 +1,54 @@
+{
+  "pack": "Economic Nexus Watch Desk",
+  "sku": "NSF-20260827-NEXUS-WATCH",
+  "as_of": "2026-08-27",
+  "disclaimer": "Planning desk, not tax advice. Confirm with the named state authority before registering or not registering.",
+  "sources": [
+    {
+      "id": "STA-2026-08-18",
+      "title": "Economic Nexus Thresholds by State | 2026 Sales Tax Guide",
+      "publisher": "SalesTaxApplication.net",
+      "reviewed": "2026-08-18",
+      "url": "https://salestaxapplication.net/sales-tax-nexus/economic-nexus-thresholds-by-state/",
+      "used_for": "51-row sales / transaction / measurement / marketplace table"
+    },
+    {
+      "id": "CDTFA-WAYFAIR",
+      "title": "Use Tax Collection Requirements Based on Sales into California Due to the Wayfair Decision",
+      "publisher": "California Department of Tax and Fee Administration",
+      "url": "https://cdtfa.ca.gov/industry/wayfair/",
+      "used_for": "CA >$500,000 TPP, preceding or current calendar year, AB 147 / RTC 6203"
+    },
+    {
+      "id": "NYS-NEXUS",
+      "title": "Registration requirement for businesses with no physical presence in New York State",
+      "publisher": "New York State Department of Taxation and Finance",
+      "url": "https://www.tax.ny.gov/pubs_and_bulls/publications/sales/nexus.htm",
+      "used_for": "NY >$500,000 AND >100 TPP sales in immediately preceding four sales tax quarters"
+    },
+    {
+      "id": "IL-FY-2026-12",
+      "title": "FY 2026-12, Destination-Based Retailers' Occupation Tax Changes",
+      "publisher": "Illinois Department of Revenue",
+      "date": "2025-12",
+      "url": "https://tax.illinois.gov/research/publications/bulletins/fy-2026-12.html",
+      "used_for": "IL drops 200-transaction test effective 2026-01-01; $100,000 lookback remains; 15% undetermined-location rate"
+    },
+    {
+      "id": "IL-ST-26-0019-GIL",
+      "title": "ST 26-0019-GIL Remote Retailers",
+      "publisher": "Illinois Department of Revenue",
+      "date": "2026-06-03",
+      "url": "https://taxarchive.illinois.gov/content/dam/soi/en/web/taxarchive/research/legal/letter-rulings/sales-tax/2026/st26-0019-gil.pdf",
+      "used_for": "Confirms 200-transaction test no longer applies on/after 2026-01-01 (35 ILCS 120/2)"
+    },
+    {
+      "id": "DODO-DG-2026",
+      "title": "Sales Tax on Digital Goods by State: Complete 2026 Guide",
+      "publisher": "Dodo Payments",
+      "date": "2026-04-05",
+      "url": "https://dodopayments.com/blogs/sales-tax-digital-goods-by-state",
+      "used_for": "Secondary SaaS / download / ebook / streaming flags — planning only, not a statute"
+    }
+  ]
+}
