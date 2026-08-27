@@ -49,6 +49,30 @@
       "date": "2026-04-05",
       "url": "https://dodopayments.com/blogs/sales-tax-digital-goods-by-state",
       "used_for": "Secondary SaaS / download / ebook / streaming flags — planning only, not a statute"
+    },
+    {
+      "id": "KY-HB-757",
+      "title": "26RS HB 757 — AN ACT relating to revenue measures",
+      "publisher": "Kentucky General Assembly",
+      "date": "2026-04-14",
+      "url": "https://apps.legislature.ky.gov/record/26RS/HB757.html",
+      "used_for": "Amends KRS 139.340 to a sales-volume-only remote-retailer / marketplace-provider nexus test; Acts Ch. 161; effective 2026-08-01"
+    },
+    {
+      "id": "AVALARA-KY-2026-04-21",
+      "title": "Kentucky to remove economic nexus transaction threshold, tax data brokering services",
+      "publisher": "Avalara",
+      "date": "2026-04-21",
+      "url": "https://www.avalara.com/blog/en/north-america/2026/04/kentucky-removes-transaction-threshold-taxes-data-brokering-services.html",
+      "used_for": "Secondary confirmation: $100k or 200 txns → $100k only on 2026-08-01; TPP + digital + services"
+    },
+    {
+      "id": "SSTGB-2026-08-14",
+      "title": "Public Notice — 2026 Streamlined Sales Tax Member State Annual Compliance Reviews",
+      "publisher": "Streamlined Sales Tax Governing Board",
+      "date": "2026-08-14",
+      "url": "https://www.streamlinedsalestax.org/public-notice-detail/public-notice---2026-streamlined-sales-tax-member-state-annual-compliance-reviews---executive-director-initial-report",
+      "used_for": "Official 23 full members + Tennessee associate as of 2026-08-01; SSTRS does not create nexus"
     }
   ]
 }
