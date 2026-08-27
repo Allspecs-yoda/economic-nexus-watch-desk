@@ -1,0 +1,52 @@
+abbr,saas,downloaded_software,ebooks,streaming,source_id,caveat
+AL,taxed,taxed,taxed,taxed,DODO-DG-2026,Secondary compilation 2026-04-05; confirm with AL DOR
+AK,no_state,no_state,no_state,no_state,DODO-DG-2026,Local taxes / ARSSTC may still apply
+AZ,exempt,taxed,exempt,exempt,DODO-DG-2026,
+AR,taxed,taxed,taxed,taxed,DODO-DG-2026,
+CA,exempt,taxed,exempt,exempt,DODO-DG-2026,CDTFA: computer programs / digital products generally not TPP; downloaded canned software often taxed
+CO,exempt,taxed,exempt,exempt,DODO-DG-2026,Home-rule cities may differ
+CT,taxed,taxed,taxed,taxed,DODO-DG-2026,
+DE,no_sales_tax,no_sales_tax,no_sales_tax,no_sales_tax,DODO-DG-2026,
+FL,exempt,exempt,exempt,taxed,DODO-DG-2026,Communications services tax on some streaming
+GA,exempt,taxed,exempt,exempt,DODO-DG-2026,
+HI,taxed,taxed,taxed,taxed,DODO-DG-2026,GET not sales tax
+ID,exempt,taxed,exempt,exempt,DODO-DG-2026,
+IL,varies,taxed,taxed,taxed,DODO-DG-2026,SaaS treatment fact-specific
+IN,taxed,taxed,taxed,taxed,DODO-DG-2026,
+IA,taxed,taxed,taxed,taxed,DODO-DG-2026,
+KS,taxed,taxed,taxed,taxed,DODO-DG-2026,
+KY,taxed,taxed,taxed,taxed,DODO-DG-2026,
+LA,exempt,taxed,exempt,exempt,DODO-DG-2026,
+ME,exempt,taxed,exempt,exempt,DODO-DG-2026,
+MD,taxed,taxed,taxed,taxed,DODO-DG-2026,
+MA,exempt,taxed,exempt,exempt,DODO-DG-2026,
+MI,exempt,taxed,exempt,exempt,DODO-DG-2026,
+MN,taxed,taxed,taxed,taxed,DODO-DG-2026,
+MS,taxed,taxed,taxed,taxed,DODO-DG-2026,
+MO,exempt,taxed,exempt,exempt,DODO-DG-2026,
+MT,no_sales_tax,no_sales_tax,no_sales_tax,no_sales_tax,DODO-DG-2026,
+NE,taxed,taxed,taxed,taxed,DODO-DG-2026,
+NV,exempt,taxed,exempt,exempt,DODO-DG-2026,
+NH,no_sales_tax,no_sales_tax,no_sales_tax,no_sales_tax,DODO-DG-2026,
+NJ,taxed,taxed,exempt,taxed,DODO-DG-2026,
+NM,taxed,taxed,taxed,taxed,DODO-DG-2026,
+NY,taxed,taxed,exempt,taxed,DODO-DG-2026,Nexus test is TPP; SaaS/prewritten software still often taxable once vendor
+NC,taxed,taxed,taxed,taxed,DODO-DG-2026,
+ND,taxed,taxed,taxed,taxed,DODO-DG-2026,
+OH,varies,taxed,taxed,taxed,DODO-DG-2026,SaaS may depend on business vs personal use
+OK,exempt,taxed,exempt,exempt,DODO-DG-2026,
+OR,no_sales_tax,no_sales_tax,no_sales_tax,no_sales_tax,DODO-DG-2026,
+PA,taxed,taxed,exempt,taxed,DODO-DG-2026,
+RI,taxed,taxed,taxed,taxed,DODO-DG-2026,
+SC,exempt,taxed,exempt,exempt,DODO-DG-2026,
+SD,taxed,taxed,taxed,taxed,DODO-DG-2026,
+TN,taxed,taxed,taxed,taxed,DODO-DG-2026,
+TX,taxed,taxed,taxed,taxed,DODO-DG-2026,SaaS often taxed as data processing
+UT,taxed,taxed,taxed,taxed,DODO-DG-2026,
+VT,taxed,taxed,taxed,taxed,DODO-DG-2026,
+VA,taxed,taxed,taxed,taxed,DODO-DG-2026,
+WA,taxed,taxed,taxed,taxed,DODO-DG-2026,Also B&O
+WV,taxed,taxed,taxed,taxed,DODO-DG-2026,
+WI,exempt,taxed,exempt,exempt,DODO-DG-2026,
+WY,taxed,taxed,taxed,taxed,DODO-DG-2026,
+DC,taxed,taxed,taxed,taxed,DODO-DG-2026,DC not in Dodo table; treat specified digital products as generally taxed — confirm OTR
